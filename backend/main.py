@@ -1,0 +1,99 @@
+
+from fastapi import FastAPI
+from pymongo import MongoClient
+
+MONGO_URI = "mongodb+srv://annmaria2004_db_user:ann200412M@cluster0.1puu7on.mongodb.net/?appName=Cluster0"
+
+app = FastAPI()
+
+client = MongoClient(MONGO_URI)
+
+db = client["job_market_intelligence"]
+jobs_collection = db["jobs"]
+
+
+@app.get("/")
+def home():
+    return {"message": "AI Job Market Intelligence API Running"}
+
+
+@app.get("/total-jobs")
+def total_jobs():
+    return {
+        "total_jobs": jobs_collection.count_documents({})
+    }
+
+
+@app.get("/countries")
+def countries():
+
+    pipeline = [
+        {
+            "$group": {
+                "_id": "$country",
+                "count": {"$sum": 1}
+            }
+        },
+        {
+            "$sort": {
+                "count": -1
+            }
+        }
+    ]
+
+    return list(jobs_collection.aggregate(pipeline))
+
+
+@app.get("/salary-by-role")
+def salary_by_role():
+
+    pipeline = [
+        {
+            "$group": {
+                "_id": "$job_title",
+                "avg_salary": {"$avg": "$salary_max_usd"}
+            }
+        },
+        {
+            "$sort": {
+                "avg_salary": -1
+            }
+        }
+    ]
+
+    results = list(jobs_collection.aggregate(pipeline))
+
+    for item in results:
+        item["avg_salary"] = round(item["avg_salary"])
+
+    return results
+
+
+@app.get("/remote-distribution")
+def remote_distribution():
+
+    pipeline = [
+        {
+            "$group": {
+                "_id": "$remote_type",
+                "count": {"$sum": 1}
+            }
+        }
+    ]
+
+    return list(jobs_collection.aggregate(pipeline))
+
+
+@app.get("/experience-distribution")
+def experience_distribution():
+
+    pipeline = [
+        {
+            "$group": {
+                "_id": "$experience_level",
+                "count": {"$sum": 1}
+            }
+        }
+    ]
+
+    return list(jobs_collection.aggregate(pipeline))
