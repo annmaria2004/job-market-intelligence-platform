@@ -106,7 +106,7 @@ def experience_distribution():
     ]
 
     return list(jobs_collection.aggregate(pipeline))
-    @app.get("/jobs")
+@app.get("/jobs")
 def get_jobs(limit: int = 50):
 
     jobs = list(
