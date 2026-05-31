@@ -1,8 +1,9 @@
 
 from fastapi import FastAPI
 from pymongo import MongoClient
+import os
 
-MONGO_URI = "mongodb+srv://annmaria2004_db_user:ann200412M@cluster0.1puu7on.mongodb.net/?appName=Cluster0"
+MONGO_URI = os.getenv("MONGO_URI")
 
 app = FastAPI()
 
