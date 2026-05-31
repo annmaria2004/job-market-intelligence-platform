@@ -117,3 +117,19 @@ def get_jobs(limit: int = 50):
     )
 
     return jobs
+@app.get("/search")
+def search_jobs(title: str = ""):
+
+    jobs = list(
+        jobs_collection.find(
+            {
+                "job_title": {
+                    "$regex": title,
+                    "$options": "i"
+                }
+            },
+            {"_id": 0}
+        ).limit(50)
+    )
+
+    return jobs
