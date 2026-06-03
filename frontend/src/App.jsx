@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Jobs from "./pages/Jobs";
+import LiveJobs from "./pages/LiveJobs";
 import Analytics from "./pages/Analytics";
 import About from "./pages/About";
 
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs />} />
+        <Route path="/live-jobs" element={<LiveJobs />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/about" element={<About />} />
       </Routes>
