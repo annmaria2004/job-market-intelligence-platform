@@ -107,13 +107,17 @@ def experience_distribution():
 
     return list(jobs_collection.aggregate(pipeline))
 @app.get("/jobs")
-def get_jobs(limit: int = 50):
+def get_jobs(page: int = 1, limit: int = 20):
+
+    skip = (page - 1) * limit
 
     jobs = list(
         jobs_collection.find(
             {},
             {"_id": 0}
-        ).limit(limit)
+        )
+        .skip(skip)
+        .limit(limit)
     )
 
     return jobs
