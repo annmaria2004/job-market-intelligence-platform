@@ -169,4 +169,27 @@ def get_live_jobs():
         return {
             "error": str(e)
         }
+@app.get("/test-jsearch")
+def test_jsearch():
+
+    url = "https://jsearch.p.rapidapi.com/search"
+
+    headers = {
+        "X-RapidAPI-Key": os.getenv("RAPIDAPI_KEY"),
+        "X-RapidAPI-Host": "jsearch.p.rapidapi.com"
+    }
+
+    params = {
+        "query": "machine learning engineer",
+        "page": "1",
+        "num_pages": "1"
+    }
+
+    response = requests.get(
+        url,
+        headers=headers,
+        params=params
+    )
+
+    return response.json()
 
