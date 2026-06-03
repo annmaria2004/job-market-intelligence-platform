@@ -5,6 +5,7 @@ import Jobs from "./pages/Jobs";
 import LiveJobs from "./pages/LiveJobs";
 import Analytics from "./pages/Analytics";
 import About from "./pages/About";
+import SavedJobs from "./pages/SavedJobs";
 
 function App() {
   return (
@@ -13,8 +14,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/live-jobs" element={<LiveJobs />} />
+        <Route
+  path="/saved-jobs"
+  element={<SavedJobs />}
+/>
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/about" element={<About />} />
+        
       </Routes>
     </BrowserRouter>
   );

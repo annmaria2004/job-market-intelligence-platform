@@ -59,6 +59,13 @@ function Navbar() {
           >
             Live Jobs
           </Button>
+          <Button
+  color="inherit"
+  component={Link}
+  to="/saved-jobs"
+>
+  Saved Jobs
+</Button>
 
           <Button
             color="inherit"

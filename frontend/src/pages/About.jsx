@@ -2,9 +2,8 @@ import Navbar from "../components/Navbar";
 import {
   Container,
   Typography,
-  Grid,
   Paper,
-  Box,
+  Grid,
 } from "@mui/material";
 
 function About() {
@@ -12,197 +11,122 @@ function About() {
     <>
       <Navbar />
 
-      <Container maxWidth="xl">
-        {/* Hero Section */}
-
-        <Box
+      <Container maxWidth="lg" sx={{ py: 6 }}>
+        <Typography
+          variant="h3"
           sx={{
-            textAlign: "center",
-            py: 10,
+            color: "white",
+            fontWeight: 700,
+            mb: 3,
           }}
         >
-          <Typography
-            variant="h2"
-            sx={{
-              color: "white",
-              fontWeight: 800,
-              mb: 3,
-            }}
-          >
-            About AI Job Intelligence
-          </Typography>
+          About AI Job Intelligence
+        </Typography>
 
-          <Typography
-            sx={{
-              color: "#94A3B8",
-              fontSize: "1.3rem",
-              maxWidth: "900px",
-              mx: "auto",
-            }}
-          >
-            A modern platform designed to help
-            professionals discover AI opportunities,
-            analyze job market trends and explore
-            global hiring insights.
-          </Typography>
-        </Box>
+        <Typography
+          sx={{
+            color: "#CBD5E1",
+            fontSize: "1.1rem",
+            lineHeight: 1.8,
+            mb: 5,
+          }}
+        >
+          AI Job Intelligence is a web platform designed to help
+          users explore Artificial Intelligence, Machine Learning,
+          Data Science, and Analytics job opportunities while
+          providing insights into current market trends.
+          The platform combines job search, live job listings,
+          and analytics into a single dashboard.
+        </Typography>
 
-        {/* Mission & Vision */}
-
-        <Grid container spacing={4}>
-          <Grid size={{ xs: 12, md: 6 }}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={4}>
             <Paper
               sx={{
-                p: 5,
+                p: 4,
                 background: "#111827",
                 color: "white",
-                borderRadius: "20px",
-                height: "100%",
+                borderRadius: "16px",
               }}
             >
-              <Typography
-                variant="h4"
-                sx={{ mb: 3 }}
-              >
-                🎯 Mission
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Job Search
               </Typography>
 
-              <Typography>
-                To simplify the job search process
-                for AI, Machine Learning and Data
-                Science professionals by providing
-                a single intelligent platform for
-                discovery and analysis.
+              <Typography color="#CBD5E1">
+                Search and explore AI-related jobs from a curated dataset.
               </Typography>
             </Paper>
           </Grid>
 
-          <Grid size={{ xs: 12, md: 6 }}>
+          <Grid item xs={12} md={4}>
             <Paper
               sx={{
-                p: 5,
+                p: 4,
                 background: "#111827",
                 color: "white",
-                borderRadius: "20px",
-                height: "100%",
+                borderRadius: "16px",
               }}
             >
-              <Typography
-                variant="h4"
-                sx={{ mb: 3 }}
-              >
-                🚀 Vision
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Live Jobs
               </Typography>
 
-              <Typography>
-                To become a global intelligence
-                platform that connects talent with
-                opportunities and provides insights
-                into the future of AI employment.
+              <Typography color="#CBD5E1">
+                Access real-time job opportunities powered by external APIs.
+              </Typography>
+            </Paper>
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            <Paper
+              sx={{
+                p: 4,
+                background: "#111827",
+                color: "white",
+                borderRadius: "16px",
+              }}
+            >
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Analytics
+              </Typography>
+
+              <Typography color="#CBD5E1">
+                Analyze hiring trends, salaries, remote work adoption,
+                and country-wise demand.
               </Typography>
             </Paper>
           </Grid>
         </Grid>
 
-        {/* Technology Stack */}
-
         <Typography
-          variant="h3"
+          variant="h4"
           sx={{
             color: "white",
-            textAlign: "center",
-            mt: 10,
-            mb: 5,
+            mt: 7,
+            mb: 3,
+            fontWeight: 600,
           }}
         >
           Technology Stack
         </Typography>
 
-        <Grid
-          container
-          spacing={3}
-          sx={{ mb: 10 }}
+        <Paper
+          sx={{
+            p: 4,
+            background: "#111827",
+            color: "white",
+            borderRadius: "16px",
+          }}
         >
-          <Grid size={{ xs: 12, md: 3 }}>
-            <Paper
-              sx={{
-                p: 4,
-                textAlign: "center",
-                background: "#111827",
-                color: "white",
-                borderRadius: "20px",
-              }}
-            >
-              <Typography variant="h4">
-                ⚛️
-              </Typography>
-
-              <Typography sx={{ mt: 2 }}>
-                React
-              </Typography>
-            </Paper>
-          </Grid>
-
-          <Grid size={{ xs: 12, md: 3 }}>
-            <Paper
-              sx={{
-                p: 4,
-                textAlign: "center",
-                background: "#111827",
-                color: "white",
-                borderRadius: "20px",
-              }}
-            >
-              <Typography variant="h4">
-                🚀
-              </Typography>
-
-              <Typography sx={{ mt: 2 }}>
-                FastAPI
-              </Typography>
-            </Paper>
-          </Grid>
-
-          <Grid size={{ xs: 12, md: 3 }}>
-            <Paper
-              sx={{
-                p: 4,
-                textAlign: "center",
-                background: "#111827",
-                color: "white",
-                borderRadius: "20px",
-              }}
-            >
-              <Typography variant="h4">
-                🍃
-              </Typography>
-
-              <Typography sx={{ mt: 2 }}>
-                MongoDB
-              </Typography>
-            </Paper>
-          </Grid>
-
-          <Grid size={{ xs: 12, md: 3 }}>
-            <Paper
-              sx={{
-                p: 4,
-                textAlign: "center",
-                background: "#111827",
-                color: "white",
-                borderRadius: "20px",
-              }}
-            >
-              <Typography variant="h4">
-                ☁️
-              </Typography>
-
-              <Typography sx={{ mt: 2 }}>
-                Render Cloud
-              </Typography>
-            </Paper>
-          </Grid>
-        </Grid>
+          <Typography sx={{ lineHeight: 2 }}>
+            • Frontend: React + Material UI <br />
+            • Backend: FastAPI (Python) <br />
+            • Database: MongoDB Atlas <br />
+            • APIs: JSearch API <br />
+            • Deployment: Render Cloud
+          </Typography>
+        </Paper>
       </Container>
     </>
   );
