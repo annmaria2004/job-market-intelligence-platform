@@ -140,18 +140,21 @@ def search_jobs(title: str = ""):
     return jobs
 @app.get("/live-jobs")
 def get_live_jobs():
+    try:
+        url = "https://www.arbeitnow.com/api/job-board-api"
 
-    url = "https://www.arbeitnow.com/api/job-board-api"
+        response = requests.get(url, timeout=10)
 
-    response = requests.get(url)
+        if response.status_code != 200:
+            return {
+                "error": f"API returned status {response.status_code}"
+            }
 
-    if response.status_code == 200:
         data = response.json()
 
         jobs = []
 
-        for job in data["data"][:50]:
-
+        for job in data.get("data", [])[:50]:
             jobs.append({
                 "title": job.get("title"),
                 "company": job.get("company_name"),
@@ -162,6 +165,8 @@ def get_live_jobs():
 
         return jobs
 
-    return {
-        "error": "Unable to fetch jobs"
-    }
+    except Exception as e:
+        return {
+            "error": str(e)
+        }
+
