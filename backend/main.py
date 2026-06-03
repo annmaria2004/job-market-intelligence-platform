@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from pymongo import MongoClient
 from fastapi.middleware.cors import CORSMiddleware
 import os
+import requests
 
 MONGO_URI = os.getenv("MONGO_URI")
 
@@ -137,3 +138,30 @@ def search_jobs(title: str = ""):
     )
 
     return jobs
+@app.get("/live-jobs")
+def get_live_jobs():
+
+    url = "https://www.arbeitnow.com/api/job-board-api"
+
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+
+        jobs = []
+
+        for job in data["data"][:50]:
+
+            jobs.append({
+                "title": job.get("title"),
+                "company": job.get("company_name"),
+                "location": job.get("location"),
+                "remote": job.get("remote"),
+                "url": job.get("url")
+            })
+
+        return jobs
+
+    return {
+        "error": "Unable to fetch jobs"
+    }
