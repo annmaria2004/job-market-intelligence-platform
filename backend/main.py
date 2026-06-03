@@ -210,3 +210,15 @@ def save_job(job: dict):
         "message": "Job saved successfully"
     }
 
+@app.get("/saved-jobs")
+def get_saved_jobs():
+
+    jobs = list(
+        saved_jobs_collection.find(
+            {},
+            {"_id": 0}
+        )
+    )
+
+    return jobs
+
