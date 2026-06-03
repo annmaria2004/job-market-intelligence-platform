@@ -20,6 +20,7 @@ client = MongoClient(MONGO_URI)
 
 db = client["job_market_intelligence"]
 jobs_collection = db["jobs"]
+saved_jobs_collection = db["saved_jobs"]
 
 
 @app.get("/")
