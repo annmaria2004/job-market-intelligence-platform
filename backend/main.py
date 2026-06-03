@@ -200,4 +200,12 @@ def test_jsearch():
     )
 
     return response.json()
+@app.post("/save-job")
+def save_job(job: dict):
+
+    saved_jobs_collection.insert_one(job)
+
+    return {
+        "message": "Job saved successfully"
+    }
 
