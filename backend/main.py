@@ -139,36 +139,44 @@ def search_jobs(title: str = ""):
 
     return jobs
 @app.get("/live-jobs")
-def get_live_jobs():
-    try:
-        url = "https://www.arbeitnow.com/api/job-board-api"
+def live_jobs():
 
-        response = requests.get(url, timeout=10)
+    url = "https://jsearch.p.rapidapi.com/search"
 
-        if response.status_code != 200:
-            return {
-                "error": f"API returned status {response.status_code}"
-            }
+    headers = {
+        "X-RapidAPI-Key": os.getenv("RAPIDAPI_KEY"),
+        "X-RapidAPI-Host": "jsearch.p.rapidapi.com"
+    }
 
-        data = response.json()
+    params = {
+        "query": "artificial intelligence OR machine learning OR data scientist",
+        "page": "1",
+        "num_pages": "1",
+        "country": "us"
+    }
 
-        jobs = []
+    response = requests.get(
+        url,
+        headers=headers,
+        params=params
+    )
 
-        for job in data.get("data", [])[:50]:
-            jobs.append({
-                "title": job.get("title"),
-                "company": job.get("company_name"),
-                "location": job.get("location"),
-                "remote": job.get("remote"),
-                "url": job.get("url")
-            })
+    data = response.json()
 
-        return jobs
+    jobs = []
 
-    except Exception as e:
-        return {
-            "error": str(e)
-        }
+    for job in data["data"][:30]:
+
+        jobs.append({
+            "title": job.get("job_title"),
+            "company": job.get("employer_name"),
+            "location": job.get("job_location"),
+            "salary": job.get("job_salary_string"),
+            "employment_type": job.get("job_employment_type"),
+            "apply_link": job.get("job_apply_link")
+        })
+
+    return jobs
 @app.get("/test-jsearch")
 def test_jsearch():
 
